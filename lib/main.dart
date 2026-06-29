@@ -25,9 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   void decrement() {
     setState(() {
-      count = count > 0
-          ? count - 1
-          : 0; // Previse que count não fique abaixo de 0
+      count--;
     });
   }
 
@@ -36,6 +34,9 @@ class _HomePageState extends State<HomePage> {
       count++;
     });
   }
+
+  bool get isFull => count >= 20; // Define a capacidade máxima como 20
+  bool get isEmpty => count <= 0; // Define a capacidade mínima como 0
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +52,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Pode entrar!',
+            Text(
+              isFull ? 'Sala cheia!' : 'Pode entrar!',
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.black,
@@ -64,16 +65,19 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(32),
               child: Text(
                 '$count',
-                style: TextStyle(fontSize: 100, color: Colors.black),
+                style: TextStyle(
+                  fontSize: 100,
+                  color: isFull ? Colors.red : Colors.black,
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: decrement,
+                  onPressed: isEmpty ? null : decrement,
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: isEmpty ? Colors.grey : Colors.red,
                     padding: const EdgeInsets.all(36),
                   ),
                   child: const Text(
@@ -83,9 +87,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(width: 32),
                 TextButton(
-                  onPressed: increment,
+                  onPressed: isFull ? null : increment,
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: isFull ? Colors.grey : Colors.green,
                     fixedSize: const Size(100, 100),
                   ),
                   child: const Text(
