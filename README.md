@@ -1,10 +1,10 @@
 # contador
 
-A new Flutter project.
+Um projeto que faz a contagem de pessoas em um estabelecimento
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1 - This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
