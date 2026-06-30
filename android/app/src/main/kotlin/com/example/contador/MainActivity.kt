@@ -1,4 +1,4 @@
-package com.example.contador
+package com.boeing.contador
 
 import io.flutter.embedding.android.FlutterActivity
 
